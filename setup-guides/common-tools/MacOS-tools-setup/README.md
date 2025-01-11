@@ -1,6 +1,6 @@
-# Installing Homebrew, Python with uv, and Node.js on macOS
+# Installing Xcode, Docker, Homebrew, Python with uv, and Node.js on MacOS
 
-This guide walks you through setting up development tools needed for AI applications on macOS.
+This guide walks you through setting up development tools needed for AI applications on macOS. It assumes you are using Apple Silicon.
 
 ## Prerequisites
 
@@ -11,6 +11,34 @@ Before starting, please note:
   - Installation can take 15-30 minutes depending on your internet speed
   - This is required for development tools to work on macOS
 - Ensure you have enough disk space (at least 10GB free recommended)
+
+## Installing Xcode
+
+You'll need to Xcode tools at a minimum:
+
+```bash
+xcode-select --install
+```
+
+## Installing Docker
+
+You'll need Docker desktop. Please note that "Commercial use of Docker Desktop at a company of more than 250 employees OR more than $10 million in annual revenue requires a paid subscription (Pro, Team, or Business)."
+
+[Install Docker on Mac OS](https://docs.docker.com/desktop/setup/install/mac-install/)
+
+### Installing docker images for mcp servers
+
+To find docker images simply search for the name of the provider, e.g. Anthropic provides docker images as "mcp":
+
+```bash
+docker search mcp
+```
+
+And to install:
+
+```bash
+docker pull mcp/fetch
+```
 
 ## Installing Homebrew
 
