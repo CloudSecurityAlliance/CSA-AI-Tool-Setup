@@ -50,7 +50,7 @@ We'll install Python and use uv for package management as it's significantly fas
 
 1. Install Python:
 ```bash
-brew install python@3.11
+brew install python@3.12
 ```
 
 2. Install uv:
@@ -64,7 +64,38 @@ python3 --version
 uv --version
 ```
 
-4. Optional: Set up alias for Python:
+4. Setup ~/.zshrc so you run inside a virtualenv:
+
+```bash
+#
+# PYTHON BREW SETUP
+#
+###
+#
+# PYTORCH AND FRIENDS DON'T HAVE WHEELS FOR 3.13 YET SO USE 3.12
+#
+# Path to the default virtual environment
+
+VENV_PATH="$HOME/.default_venv"
+
+# Path to Homebrew Python
+BREW_PYTHON=$(brew --prefix)/bin/python3.12
+
+# Check if the virtual environment exists; if not, create it
+if [ ! -d "$VENV_PATH" ]; then
+    echo "Default virtual environment not found. Creating one..."
+    $BREW_PYTHON -m venv $VENV_PATH
+fi
+
+# Activate the virtual environment
+if [ -f "$VENV_PATH/bin/activate" ]; then
+    source "$VENV_PATH/bin/activate"
+else
+    echo "Could not find or activate virtual environment at $VENV_PATH."
+fi
+```
+
+5. Optional: Set up alias for Python in ~/.zshrc:
 ```bash
 echo 'alias python=python3' >> ~/.zshrc
 source ~/.zshrc
