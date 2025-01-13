@@ -7,9 +7,9 @@
         "-i",
         "--rm",
         "--mount",
-        "type=bind,src=/Users/[USERNAME]/GitHub,dst=/GitHub",
+        "type=bind,src=/Users/[YOUR LOCAL NAME]/Library/CloudStorage/GoogleDrive-[YOUR GOOGLE NAME]@cloudsecurityalliance.org,dst=/GoogleDrive",
         "mcp/filesystem",
-        "/GitHub"
+        "/GoogleDrive"
       ]
     },
     "brave-search": {

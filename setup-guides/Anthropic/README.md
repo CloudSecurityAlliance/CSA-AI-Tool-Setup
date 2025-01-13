@@ -45,9 +45,9 @@ Claude Desktop uses a JSON configuration file that can be customized for advance
         "-i",
         "--rm",
         "--mount",
-        "type=bind,src=/Users/[USERNAME]/GitHub,dst=/GitHub",
+        "type=bind,src=/Users/[YOUR LOCAL NAME]/Library/CloudStorage/GoogleDrive-[YOUR GOOGLE NAME]@cloudsecurityalliance.org,dst=/GoogleDrive",
         "mcp/filesystem",
-        "/GitHub"
+        "/GoogleDrive"
       ]
     },
     "brave-search": {
@@ -97,6 +97,19 @@ Claude Desktop uses a JSON configuration file that can be customized for advance
 }
 ```
 
+### Installation
+
+First download the file:
+
+```bash
+curl https://raw.githubusercontent.com/CloudSecurityAlliance/CSA-AI-Tool-Setup/refs/heads/main/setup-guides/Anthropic/claude_desktop_config.json > claude_desktop_config.json
+```
+
+Then move the file:
+
+```bash
+mv claude_desktop_config.json ~/Library/Application\ Support/Claude/claude_desktop_config.json
+```
 
 **Important Notes:**
 - Back up the config file before making changes
