@@ -22,7 +22,7 @@ Claude Desktop provides a native application experience for interacting with Cla
 ```bash
 docker pull mcp/filesystem
 docker pull mcp/brave-search
-docker pull mcp/sequential-thinking
+docker pull mcp/sequentialthinking
 docker pull mcp/git
 docker pull mcp/fetch
 ```
@@ -64,11 +64,13 @@ Claude Desktop uses a JSON configuration file that can be customized for advance
         "BRAVE_API_KEY": "[BRAVE_API_KEY_HERE]"
       }
     },
-    "sequential-thinking": {
-      "command": "npx",
+    "sequentialthinking": {
+      "command": "docker",
       "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
+        "run",
+        "--rm",
+        "-i",
+        "mcp/sequentialthinking"
       ]
     },
     "git": {
