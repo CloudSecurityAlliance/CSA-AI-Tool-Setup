@@ -25,6 +25,7 @@ docker pull mcp/brave-search
 docker pull mcp/sequentialthinking
 docker pull mcp/git
 docker pull mcp/fetch
+docker pull mcp/puppeteer
 ```
 
 ## Configuration File Setup
@@ -33,7 +34,7 @@ Claude Desktop uses a JSON configuration file that can be customized for advance
       
 ### Location
 - **Windows**: `%APPDATA%\Claude\claude_desktop_config.json`
-- **macOS**: `~/Library/Application Support/Claude/claude_desktop_config.json`
+- **macOS**: `~/Library/Application\ Support/Claude/claude_desktop_config.json`
 
 ```json
 {
@@ -111,10 +112,14 @@ Then move the file:
 mv claude_desktop_config.json ~/Library/Application\ Support/Claude/claude_desktop_config.json
 ```
 
-**Important Notes:**
-- Back up the config file before making changes
-- The application must be restarted for changes to take effect
-- Invalid JSON syntax will prevent the application from starting (`jq . claude_desktop_config.json` to print errors)
+### TODO INSTAL SCRIPT
+
+1. curl blah | sh
+2. Can it check for claude desktop install and docker? Yes. Files and command
+3. Prompt the user for which MCP servers they want, and what config they want, e.g. "Do you want... and then ask for any config. Automate where possible, e.g. `whoai`
+4. Interactive prompt for e.g. brave-search setup, provide URL and instructions (e.g. credit card needed).
+5. Support updates/additions? "You currently have..."
+6. Do supporting actions like docker pull, restrict ourselves to the mcp/ and cloudsecurityallianceorg/
 
 ## Additional Resources
 
