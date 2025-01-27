@@ -1,21 +1,9 @@
 {
   "mcpServers": {
-    "filesystem": {
-      "command": "docker",
-      "args": [
-        "run",
-        "-i",
-        "--rm",
-        "--mount",
-        "type=bind,src=/Users/[YOUR LOCAL NAME]/Library/CloudStorage/GoogleDrive-[YOUR GOOGLE NAME]@cloudsecurityalliance.org,dst=/GoogleDrive",
-        "mcp/filesystem",
-        "/GoogleDrive"
-      ]
-    },
     "brave-search": {
       "command": "docker",
       "args": [
-        "run",
+        "run",    
         "-i",
         "--rm",
         "-e",
@@ -23,36 +11,47 @@
         "mcp/brave-search"
       ],
       "env": {
-        "BRAVE_API_KEY": "[BRAVE_API_KEY_HERE]"
+        "BRAVE_API_KEY": "[BRAVE_API_KEY_GOES_HERE]"
       }
-    },
-    "sequentialthinking": {
-      "command": "docker",
-      "args": [
-        "run",
-        "--rm",
-        "-i",
-        "mcp/sequentialthinking"
-      ]
-    },
-    "git": {
-      "command": "docker",
-      "args": [
-        "run",
-        "--rm",
-        "-i",
-        "--mount",
-        "type=bind,src=/Users/[USERNAME]/GitHub,dst=/GitHub",
-        "mcp/git"
-      ]
     },
     "fetch": {
       "command": "docker",
       "args": [
         "run",
-        "-i",
+        "-i",  
         "--rm",
         "mcp/fetch"
+      ]
+    },
+    "filesystem": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+	"--mount", "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/Library/CloudStorage/GoogleDrive-[EMAIL_ADDRESS_GOES_HERE],dst=/GoogleDrive",
+	"--mount", "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/Library/Mobile Documents/iCloud~md~obsidian/Documents,dst=/projects/Obsidian",
+	"--mount", "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/GitHub,dst=/projects/GitHub",
+        "mcp/filesystem",
+        "/projects"
+      ]
+    },
+    "git": {
+      "command": "docker",
+      "args": [
+        "run", 
+        "--rm",
+        "-i",
+        "--mount",
+        "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/GitHub,dst=/GitHub",
+        "mcp/git"
+      ]
+    },
+    "sequential-thinking": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@modelcontextprotocol/server-sequential-thinking"
       ]
     }
   }
