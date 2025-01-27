@@ -6,13 +6,13 @@ setopt ERR_EXIT NO_UNSET PIPE_FAIL
 {
 
 # Banner and warning
-cat << "EOF"
-╔════════════════════════════════════════════════════════════════╗
-║ Cloud Security Alliance - Claude Desktop Configuration Script   ║
-║ This script will configure Claude Desktop with CSA AI tools    ║
-╚════════════════════════════════════════════════════════════════╝
+cat << 'EOF'
+===============================================================
+  Cloud Security Alliance - Claude Desktop Configuration Script  
+  This script will configure Claude Desktop with CSA AI tools   
+===============================================================
 
-⚠️  WARNING: You are about to run a script that will:
+WARNING: You are about to run a script that will:
    - Check your system compatibility
    - Install/update Docker images
    - Create a Claude Desktop configuration file
