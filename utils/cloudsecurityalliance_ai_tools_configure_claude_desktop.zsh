@@ -61,8 +61,7 @@ check_and_install_apps_on_macos() {
 
         echo "Checking for $app_name..."
 
-        local mdfind_query="kMDItemKind = \"Application\" && kMDItemDisplayName = \"$app_display_name\""
-        if mdfind "$mdfind_query" | grep -q "$app_display_name"; then
+        if mdfind kMDItemKind=Application | grep -i "$app_display_name" > /dev/null 2>&1; then
             echo "  ✅ $app_name is installed."
         else
             if [[ "$app_display_name" = 'Claude' || "$app_display_name" = 'Docker' ]]; then
