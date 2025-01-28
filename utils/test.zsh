@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 echo "This is an interactive script."
-read -p "What is your name? " name
+print -n "What is your name? "  # -n prevents a newline
+read name
 echo "Hello, $name!"
 
