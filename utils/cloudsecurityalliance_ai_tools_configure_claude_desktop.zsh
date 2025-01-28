@@ -5,27 +5,6 @@ setopt ERR_EXIT NO_UNSET PIPE_FAIL
 
 echo 'Cloud Security Alliance - Claude Desktop Configuration Script'
 echo '--------------------------------------------------------'
-echo 'This script will:'
-echo '- Check your system compatibility'
-echo '- Install/update Docker images'
-echo '- Create a Claude Desktop configuration file'
-echo ''
-echo 'Review the source at:'
-echo 'https://github.com/cloudsecurityalliance/CSA-AI-Tool-Setup'
-echo '--------------------------------------------------------'
-echo ''
-
-# Use vared for interactive input
-REPLY='n'
-echo -n "Would you like to proceed? (y/N) "
-vared -p '' REPLY
-echo ''
-if [[ ! $REPLY =~ ^[Yy]$ ]]; then
-    echo '❌ Setup cancelled.'
-    exit 1
-fi
-
-trap 'echo ""; echo "❌ Setup cancelled."; exit 1' INT
 
 check_if_running_on_macos_and_apple_silicon() {
     local os_name=$(uname)
@@ -127,31 +106,34 @@ update_or_install_docker_images() {
 }
 
 get_user_info() {
+    # Get current username
     whoami_var=$(whoami)
     if [[ -z "$whoami_var" ]]; then
         echo '❌ Failed to get current username.'
         exit 1
     fi
-    
-    google_address=''
-    echo -n "Enter your Google Drive email address (leave blank if not applicable): "
-    vared -p '' google_address
-    
-    brave_api_key=''
-    while true; do
-        echo -n "Enter your Brave API search key (must start with BS, leave blank if not applicable): "
-        vared -p '' brave_api_key
-        if [[ -z "$brave_api_key" || "$brave_api_key" = BS* ]]; then
-            break
-        else
-            echo 'Error: Brave API search key must start with BS. Please try again.'
-        fi
-    done
 
-    : ${google_address:=''}
-    : ${brave_api_key:=''}
+    # Read config file
+    local config_file="/Users/$whoami_var/Downloads/claude_desktop.txt"
+    if [[ ! -f "$config_file" ]]; then
+        echo "❌ Configuration file not found at: $config_file"
+        echo "Please create a file at $config_file with contents like:"
+        echo '{"google_email":"email@address","brave_search_api_key":"BS2487yr92y34t"}'
+        exit 1
+    fi
 
-    echo '✅ User information collected.'
+    # Parse JSON - using grep/sed since we know the exact format
+    local content=$(<"$config_file")
+    google_address=$(echo "$content" | sed -n 's/.*"google_email":"\([^"]*\)".*/\1/p')
+    brave_api_key=$(echo "$content" | sed -n 's/.*"brave_search_api_key":"\([^"]*\)".*/\1/p')
+
+    # Validate Brave API key if provided
+    if [[ -n "$brave_api_key" && ! "$brave_api_key" = BS* ]]; then
+        echo "❌ Brave API search key must start with 'BS'. Found: $brave_api_key"
+        exit 1
+    fi
+
+    echo '✅ User information collected from config file.'
 }
 
 check_claude_config_dir() {
