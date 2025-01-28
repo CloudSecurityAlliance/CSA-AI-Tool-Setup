@@ -151,7 +151,7 @@ create_config_file() {
     local whoami_var="$1"
     local google_address="$2"
     local brave_api_key="$3"
-    local template_path='/projects/GitHub/CSA-AI-Tool-Setup/setup-guides/Anthropic/claude_desktop_config.json'
+    local template_url='https://raw.githubusercontent.com/CloudSecurityAlliance/CSA-AI-Tool-Setup/refs/heads/main/setup-guides/Anthropic/claude_desktop_config.json'
     local target_path="/Users/$whoami_var/Library/Application Support/Claude/claude_desktop_config.json"
 
     if [[ -f "$target_path" ]]; then
@@ -160,14 +160,11 @@ create_config_file() {
         exit 1
     fi
 
-    if [[ ! -f "$template_path" ]]; then
-        echo "❌ Template configuration file not found at: $template_path"
-        exit 1
-    fi
-
+    # Fetch template from GitHub
+    echo 'Fetching template configuration...'
     local config_content
-    config_content=$(<"$template_path") || {
-        echo '❌ Failed to read template configuration file.'
+    config_content=$(curl -fsSL "$template_url") || {
+        echo '❌ Failed to download template configuration.'
         exit 1
     }
 
