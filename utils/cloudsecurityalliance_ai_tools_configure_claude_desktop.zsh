@@ -15,8 +15,10 @@ echo 'https://github.com/cloudsecurityalliance/CSA-AI-Tool-Setup'
 echo '--------------------------------------------------------'
 echo ''
 
-# Use zsh read with < /dev/tty to force terminal input
-read "REPLY?Would you like to proceed? (y/N) " < /dev/tty
+# Use vared for interactive input
+REPLY='n'
+echo -n "Would you like to proceed? (y/N) "
+vared -p '' REPLY
 echo ''
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     echo '❌ Setup cancelled.'
@@ -131,10 +133,14 @@ get_user_info() {
         exit 1
     fi
     
-    read "google_address?Enter your Google Drive email address (leave blank if not applicable): " < /dev/tty
+    google_address=''
+    echo -n "Enter your Google Drive email address (leave blank if not applicable): "
+    vared -p '' google_address
     
+    brave_api_key=''
     while true; do
-        read "brave_api_key?Enter your Brave API search key (must start with BS, leave blank if not applicable): " < /dev/tty
+        echo -n "Enter your Brave API search key (must start with BS, leave blank if not applicable): "
+        vared -p '' brave_api_key
         if [[ -z "$brave_api_key" || "$brave_api_key" = BS* ]]; then
             break
         else
