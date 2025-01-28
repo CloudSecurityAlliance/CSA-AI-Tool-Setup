@@ -3,6 +3,7 @@ setopt ERR_EXIT NO_UNSET PIPE_FAIL
 
 {
 
+# Print banner
 echo 'Cloud Security Alliance - Claude Desktop Configuration Script'
 echo '--------------------------------------------------------'
 echo 'This script will:'
@@ -15,7 +16,8 @@ echo 'https://github.com/cloudsecurityalliance/CSA-AI-Tool-Setup'
 echo '--------------------------------------------------------'
 echo ''
 
-read 'REPLY?Would you like to proceed? (y/N) '
+# Always read from /dev/tty for interactive input
+read "REPLY?Would you like to proceed? (y/N) " < /dev/tty
 echo ''
 if [[ ! $REPLY =~ ^[Yy]$ ]]; then
     echo '❌ Setup cancelled.'
@@ -130,10 +132,10 @@ get_user_info() {
         exit 1
     fi
     
-    read 'google_address?Enter your Google Drive email address (leave blank if not applicable): '
-
+    read "google_address?Enter your Google Drive email address (leave blank if not applicable): " < /dev/tty
+    
     while true; do
-        read 'brave_api_key?Enter your Brave API search key (must start with BS, leave blank if not applicable): '
+        read "brave_api_key?Enter your Brave API search key (must start with BS, leave blank if not applicable): " < /dev/tty
         if [[ -z "$brave_api_key" || "$brave_api_key" = BS* ]]; then
             break
         else
