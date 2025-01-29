@@ -3,7 +3,7 @@
     "brave-search": {
       "command": "docker",
       "args": [
-        "run",    
+        "run",
         "-i",
         "--rm",
         "-e",
@@ -18,7 +18,7 @@
       "command": "docker",
       "args": [
         "run",
-        "-i",  
+        "-i",
         "--rm",
         "mcp/fetch"
       ]
@@ -29,9 +29,12 @@
         "run",
         "-i",
         "--rm",
-	"--mount", "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/Library/CloudStorage/GoogleDrive-[EMAIL_ADDRESS_GOES_HERE],dst=/GoogleDrive",
-	"--mount", "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/Library/Mobile Documents/iCloud~md~obsidian/Documents,dst=/projects/Obsidian",
-	"--mount", "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/GitHub,dst=/projects/GitHub",
+        "--mount",
+        "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/Library/CloudStorage/GoogleDrive-[EMAIL_ADDRESS_GOES_HERE],dst=/GoogleDrive",
+        "--mount",
+        "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/Library/Mobile Documents/iCloud~md~obsidian/Documents,dst=/projects/Obsidian",
+        "--mount",
+        "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/GitHub,dst=/projects/GitHub",
         "mcp/filesystem",
         "/projects"
       ]
@@ -39,12 +42,24 @@
     "git": {
       "command": "docker",
       "args": [
-        "run", 
+        "run",
         "--rm",
         "-i",
         "--mount",
         "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/GitHub,dst=/GitHub",
         "mcp/git"
+      ]
+    },
+    "puppeteer": {
+      "command": "docker",
+      "args": [
+        "run",
+        "-i",
+        "--rm",
+        "--init",
+        "-e",
+        "DOCKER_CONTAINER=true",
+        "mcp/puppeteer"
       ]
     },
     "sequential-thinking": {

@@ -68,6 +68,7 @@ update_or_install_docker_images() {
         'mcp/fetch:latest'
         'mcp/filesystem:latest'
         'mcp/git:latest'
+	'mcp/puppeteer:latest'
         'mcp/sequentialthinking:latest'
     )
 
