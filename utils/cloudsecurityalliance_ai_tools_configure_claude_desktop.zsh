@@ -128,8 +128,8 @@ get_user_info() {
 
     # Parse JSON - using grep/sed since we know the exact format
     local content=$(<"$config_file")
-    google_address=$(echo "$content" | sed -n 's/.*"GOOGLE_EMAIL_VALUE":"\([^"]*\)".*/\1/p')
-    brave_api_key=$(echo "$content" | sed -n 's/.*"BRAVE_SEARCH_API_KEY_VALUE":"\([^"]*\)".*/\1/p')
+    google_address=$(echo "$content" | tr -d '\n' | sed -n 's/.*"GOOGLE_EMAIL_VALUE"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p')
+    brave_api_key=$(echo "$content" | tr -d '\n' | sed -n 's/.*"BRAVE_SEARCH_API_KEY_VALUE"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/p')
 
     # Validate Brave API key if provided
     if [[ -n "$brave_api_key" && ! "$brave_api_key" = BS* ]]; then
