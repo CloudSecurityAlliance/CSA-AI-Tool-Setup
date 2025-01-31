@@ -29,7 +29,7 @@
         "run",
         "-i",
         "--rm",
-        "--mount", "type=bind,src=/Users/[WHOAMI_VALUE]/Library/CloudStorage/GoogleDrive-[GOOGLE_EMAIL_VALUE],dst=/GoogleDrive",
+        "--mount", "type=bind,src=/Users/[WHOAMI_VALUE]/Library/CloudStorage/GoogleDrive-[GOOGLE_EMAIL_VALUE],dst=/projects/GoogleDrive",
         "--mount", "type=bind,src=/Users/kurt/GitHub,dst=/projects/GitHub",
         "mcp/filesystem",
         "/projects"
