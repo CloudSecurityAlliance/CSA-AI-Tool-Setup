@@ -11,7 +11,7 @@
         "mcp/brave-search"
       ],
       "env": {
-        "BRAVE_API_KEY": "[BRAVE_API_KEY]"
+        "BRAVE_API_KEY": "[BRAVE_SEARCH_API_KEY_VALUE]"
       }
     },
     "fetch": {
@@ -30,11 +30,7 @@
         "-i",
         "--rm",
         "--mount",
-        "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/Library/CloudStorage/GoogleDrive-[EMAIL_ADDRESS_GOES_HERE],dst=/GoogleDrive",
-        "--mount",
-        "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/Library/Mobile Documents/iCloud~md~obsidian/Documents,dst=/projects/Obsidian",
-        "--mount",
-        "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/GitHub,dst=/projects/GitHub",
+        "type=bind,src=/Users/[WHOAMI_VALUE]/Library/CloudStorage/GoogleDrive-[GOOGLE_EMAIL_VALUE],dst=/GoogleDrive",
         "mcp/filesystem",
         "/projects"
       ]
@@ -46,7 +42,7 @@
         "--rm",
         "-i",
         "--mount",
-        "type=bind,src=/Users/[WHOAMI RESULT GOES HERE]/GitHub,dst=/GitHub",
+        "type=bind,src=/Users/[WHOAMI_VALUE]/GitHub,dst=/GitHub",
         "mcp/git"
       ]
     },
@@ -62,11 +58,13 @@
         "mcp/puppeteer"
       ]
     },
-    "sequential-thinking": {
-      "command": "npx",
+    "sequentialthinking": {
+      "command": "docker",
       "args": [
-        "-y",
-        "@modelcontextprotocol/server-sequential-thinking"
+        "run",
+        "--rm",
+        "-i",
+        "mcp/sequentialthinking"
       ]
     }
   }
