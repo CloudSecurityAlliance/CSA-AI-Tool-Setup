@@ -30,7 +30,7 @@
         "-i",
         "--rm",
         "--mount",
-        "type=bind,src=/Users/$USER_NAME/Library/CloudStorage/GoogleDrive-username@cloudsecurityalliance.org,dst=/GoogleDrive",
+        "type=bind,src=/Users/[WHOAMI_VALUE]/Library/CloudStorage/GoogleDrive-username@cloudsecurityalliance.org,dst=/GoogleDrive",
         "mcp/filesystem",
         "/projects"
       ]
