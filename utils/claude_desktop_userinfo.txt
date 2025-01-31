@@ -1,4 +1,4 @@
 {
-  "GOOGLE_EMAIL": "username@cloudsecurityalliance.org",
-  "BRAVE_SEARCH_API_KEY": "BS1234567890ABCDEFGHIJKLMNO"
+  "GOOGLE_EMAIL_VALUE": "username@cloudsecurityalliance.org",
+  "BRAVE_SEARCH_API_KEY_VALUE": "BS1234567890ABCDEFGHIJKLMNO"
 }
