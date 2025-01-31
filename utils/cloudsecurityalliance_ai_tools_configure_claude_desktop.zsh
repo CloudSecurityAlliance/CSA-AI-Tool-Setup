@@ -1,6 +1,9 @@
 #!/usr/bin/env zsh
 setopt ERR_EXIT NO_UNSET PIPE_FAIL
 
+# Configuration
+USER_NAME="$(whoami)"
+
 {
 
 echo 'Cloud Security Alliance - Claude Desktop Configuration Script'
@@ -169,9 +172,9 @@ create_config_file() {
         exit 1
     }
 
-    config_content=${config_content//\[WHOAMI RESULT GOES HERE\]/$whoami_var}
-    config_content=${config_content//\[EMAIL_ADDRESS_GOES_HERE\]/$google_address}
-    config_content=${config_content//\[BRAVE_API_KEY\]/$brave_api_key}
+    config_content=${config_content//\[WHOAMI_VALUE\]/$whoami_var}
+    config_content=${config_content//\[GOOGLE_EMAIL_VALUE\]/$google_address}
+    config_content=${config_content//\[BRAVE_SEARCH_API_KEY_VALUE\]/$brave_api_key}
 
     if ! print -r -- "$config_content" > "$target_path"; then
         echo '❌ Failed to write configuration file.'
@@ -199,6 +202,20 @@ main() {
     echo ''
 
     check_claude_config_dir "$whoami_var"
+    echo ''
+
+    # Create GitHub directory
+    local github_dir="/Users/$whoami_var/GitHub"
+    if [[ ! -d "$github_dir" ]]; then
+        echo "Creating GitHub directory at: $github_dir"
+        mkdir -p "$github_dir" || {
+            echo "❌ Failed to create GitHub directory"
+            exit 1
+        }
+        echo "✅ GitHub directory created successfully"
+    else
+        echo "✅ GitHub directory already exists at: $github_dir"
+    fi
     echo ''
 
     create_config_file "$whoami_var" "$google_address" "$brave_api_key"
