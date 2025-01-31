@@ -118,7 +118,7 @@ get_user_info() {
     fi
 
     # Read config file
-    local config_file="/Users/$whoami_var/Downloads/claude_desktop.txt"
+    local config_file="/Users/${whoami_var}/Downloads/claude_desktop_userinfo.txt"
     if [[ ! -f "$config_file" ]]; then
         echo "❌ Configuration file not found at: $config_file"
         echo "Please create a file at $config_file with contents like:"
@@ -142,7 +142,7 @@ get_user_info() {
 
 check_claude_config_dir() {
     local whoami_var="$1"
-    local config_dir="/Users/$whoami_var/Library/Application Support/Claude"
+    local config_dir="/Users/${whoami_var}/Library/Application Support/Claude"
     
     if [[ ! -d "$config_dir" ]]; then
         echo "❌ Claude configuration directory not found at: $config_dir"
@@ -156,7 +156,7 @@ create_config_file() {
     local google_address="$2"
     local brave_api_key="$3"
     local template_url='https://raw.githubusercontent.com/CloudSecurityAlliance/CSA-AI-Tool-Setup/refs/heads/main/utils/claude_desktop_config.json'
-    local target_path="/Users/$whoami_var/Library/Application Support/Claude/claude_desktop_config.json"
+    local target_path="/Users/${whoami_var}/Library/Application Support/Claude/claude_desktop_config.json"
 
     if [[ -f "$target_path" ]]; then
         echo "❌ Configuration file already exists at: $target_path"
@@ -205,7 +205,7 @@ main() {
     echo ''
 
     # Create GitHub directory
-    local github_dir="/Users/$whoami_var/GitHub"
+    local github_dir="/Users/${whoami_var}/GitHub"
     if [[ ! -d "$github_dir" ]]; then
         echo "Creating GitHub directory at: $github_dir"
         mkdir -p "$github_dir" || {
