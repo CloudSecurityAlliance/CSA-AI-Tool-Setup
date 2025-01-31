@@ -122,14 +122,17 @@ get_user_info() {
     if [[ ! -f "$config_file" ]]; then
         echo "❌ Configuration file not found at: $config_file"
         echo "Please create a file at $config_file with contents like:"
-        echo '{"google_email":"email@address","brave_search_api_key":"BS2487yr92y34t"}'
+        echo '{
+  "GOOGLE_EMAIL_VALUE": "username@cloudsecurityalliance.org",
+  "BRAVE_SEARCH_API_KEY_VALUE": "BS1234567890ABCDEFGHIJKLMNO"
+}'
         exit 1
     fi
 
     # Parse JSON - using grep/sed since we know the exact format
     local content=$(<"$config_file")
-    google_address=$(echo "$content" | sed -n 's/.*"google_email":"\([^"]*\)".*/\1/p')
-    brave_api_key=$(echo "$content" | sed -n 's/.*"brave_search_api_key":"\([^"]*\)".*/\1/p')
+    google_address=$(echo "$content" | sed -n 's/.*"GOOGLE_EMAIL_VALUE":"\([^"]*\)".*/\1/p')
+    brave_api_key=$(echo "$content" | sed -n 's/.*"BRAVE_SEARCH_API_KEY_VALUE":"\([^"]*\)".*/\1/p')
 
     # Validate Brave API key if provided
     if [[ -n "$brave_api_key" && ! "$brave_api_key" = BS* ]]; then
