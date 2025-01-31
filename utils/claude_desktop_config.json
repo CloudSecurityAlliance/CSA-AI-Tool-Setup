@@ -11,7 +11,7 @@
         "mcp/brave-search"
       ],
       "env": {
-        "BRAVE_API_KEY": "BS1234567890ABCDEFGHIJKLMNO"
+        "BRAVE_API_KEY": "[BRAVE_SEARCH_API_KEY_VALUE]"
       }
     },
     "fetch": {
