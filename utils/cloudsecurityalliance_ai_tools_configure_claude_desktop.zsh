@@ -152,7 +152,7 @@ create_config_file() {
     local whoami_var="$1"
     local google_address="$2"
     local brave_api_key="$3"
-    local template_url='https://raw.githubusercontent.com/CloudSecurityAlliance/CSA-AI-Tool-Setup/refs/heads/main/setup-guides/Anthropic/claude_desktop_config.json'
+    local template_url='https://raw.githubusercontent.com/CloudSecurityAlliance/CSA-AI-Tool-Setup/refs/heads/main/utils/claude_desktop_config.json'
     local target_path="/Users/$whoami_var/Library/Application Support/Claude/claude_desktop_config.json"
 
     if [[ -f "$target_path" ]]; then
