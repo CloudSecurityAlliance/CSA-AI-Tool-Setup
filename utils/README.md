@@ -14,7 +14,7 @@ The Mac OS script is intentioanlly restricted to only run on Apple Silicon hardw
 cp "/Users/`whoami`/Library/Application Support/Claude/claude_desktop_config.json" ~
 ```
 
-## Then make sure you remove the existing config fikle:
+## Then make sure you remove the existing config file:
 
 ```
 rm "/Users/`whoami`/Library/Application Support/Claude/claude_desktop_config.json"
