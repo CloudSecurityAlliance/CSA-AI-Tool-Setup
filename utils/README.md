@@ -7,6 +7,11 @@ The Mac OS script is intentioanlly restricted to only run on Apple Silicon hardw
 * [Claude Desktop](https://claude.ai/download)
 * [Google Drive Desktop](https://dl.google.com/drive-file-stream/GoogleDrive.dmg)
 * [Docker Desktop](https://docs.docker.com/desktop/setup/install/mac-install/)
+* On Windows you will need [iCloud](https://www.microsoft.com/store/apps/9PKTQ5699M62)
+
+## Optional applications:
+
+* [Obsidian](https://obsidian.md/download)
 
 ## First backup your existing config if you have one:
 
